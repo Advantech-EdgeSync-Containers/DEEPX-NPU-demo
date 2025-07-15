@@ -207,7 +207,7 @@ Version mismatch between `pip`, `setuptools`, or `wheel`.
 python3.11 -m pip install --upgrade pip setuptools wheel
 ```
 
-### Issue 2: `ModuleNotFoundError`: No module named 'clip'`
+### Issue 2: `ModuleNotFoundError`: No module named `clip`
 
 **Error**
 ```
