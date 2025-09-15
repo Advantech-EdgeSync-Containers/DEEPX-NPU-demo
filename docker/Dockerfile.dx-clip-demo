@@ -1,0 +1,173 @@
+ARG UBUNTU_VERSION=24.04
+ARG TAG_NAME=${UBUNTU_VERSION}
+ARG BASE_IMAGE_NAME=ubuntu
+FROM ${BASE_IMAGE_NAME}:${TAG_NAME}
+
+USER root
+
+ARG TZ=Asia/Seoul
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ >/etc/timezone
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV PATH="/usr/local/bin:${PATH}"
+
+### update apt repo
+RUN apt-get update && apt-get install -y \
+    software-properties-common && \
+    add-apt-repository universe && \
+    add-apt-repository multiverse && \
+    apt-get update
+
+### install utils
+RUN apt-get update && apt-get install -y \
+        tzdata \
+        git vim sudo \
+        libva-dev \
+        pciutils \
+        kmod \
+        lsb-release
+
+# X11 forwarding and xcb
+RUN apt-get install -y x11-apps libx11-6 xauth libxext6 libxrender1 libxtst6 libxi6 libxcb-xinerama0
+
+# for setting ssl issue on intranet
+# only used 'USE_INTRANET=true'
+ARG USE_INTRANET=false
+ARG CA_FILE_NAME="dummy.crt"
+COPY ${CA_FILE_NAME} /usr/local/share/ca-certificates/
+RUN if [ "$USE_INTRANET" = "true" ]; then \
+      git config --global http.sslVerify false && \
+      update-ca-certificates ; \
+    else \
+      echo "Skipping intranet SSL setup"; \
+    fi
+
+# Setup Python 3.8.2 or higher
+#   - 18.04: 3.8.2 (source build)
+#   - 20.04: 3.8.2 (apt install)
+#   - 22.04: 3.10.4 (apt install)
+#   - 24.04: 3.12.3 (apt install)
+ENV MIN_PY_VERSION=3.8.2
+ARG TARGET_INSTALL_PY_VERSION=""
+RUN set -x && \
+    echo "Install python ${TARGET_INSTALL_PY_VERSION} or higher.." && \
+    UBUNTU_VERSION=$(lsb_release -rs) && \
+    echo "*** UBUNTU_VERSION(${UBUNTU_VERSION}) ***" && \
+    if [ "$UBUNTU_VERSION" = "24.04" ] || [ "$UBUNTU_VERSION" = "22.04" ] || [ "$UBUNTU_VERSION" = "20.04" ]; then \
+        if [ -n "${TARGET_INSTALL_PY_VERSION}" ]; then \
+            PY_MAJOR_MINOR=$(echo "${TARGET_INSTALL_PY_VERSION}" | cut -d. -f1,2) && \
+            echo "Install python ${PY_MAJOR_MINOR} version using apt.." && \
+            apt-get install -y python${PY_MAJOR_MINOR} python${PY_MAJOR_MINOR}-dev python${PY_MAJOR_MINOR}-venv && \
+            DX_PYTHON_EXEC="python${PY_MAJOR_MINOR}"; \
+        else \
+            echo "Install python os default version" && \
+            apt-get install -y python3 python3-dev python3-venv && \
+            DX_PYTHON_EXEC="python3"; \
+        fi \
+    elif [ "$UBUNTU_VERSION" = "18.04" ]; then \
+        if [ ! -n "${TARGET_INSTALL_PY_VERSION}" ]; then \
+            TARGET_INSTALL_PY_VERSION=${MIN_PY_VERSION}; \
+        fi && \
+        echo "Install python ${TARGET_INSTALL_PY_VERSION} version using source build.." && \
+        apt-get update && \
+        apt-get install -y --no-install-recommends \
+            build-essential \
+            wget \
+            curl \
+            ca-certificates \
+            libssl-dev \
+            zlib1g-dev \
+            libncurses5-dev \
+            libncursesw5-dev \
+            libreadline-dev \
+            libsqlite3-dev \
+            libgdbm-dev \
+            libdb5.3-dev \
+            libbz2-dev \
+            libexpat1-dev \
+            liblzma-dev \
+            tk-dev \
+            libffi-dev \
+            uuid-dev && \
+        wget --no-check-certificate https://www.python.org/ftp/python/${TARGET_INSTALL_PY_VERSION}/Python-${TARGET_INSTALL_PY_VERSION}.tgz && \
+        tar xvf Python-${TARGET_INSTALL_PY_VERSION}.tgz && \
+        cd Python-${TARGET_INSTALL_PY_VERSION} && \
+        ./configure --enable-optimizations && \
+        make -j$(nproc) && \
+        make altinstall && \
+        cd .. && \
+        rm -rf Python-${TARGET_INSTALL_PY_VERSION}* && \
+        PY_MAJOR_MINOR=$(echo "${TARGET_INSTALL_PY_VERSION}" | cut -d. -f1,2) && \
+        DX_PYTHON_EXEC="python${PY_MAJOR_MINOR}"; \
+    else \
+        echo "Unsupported Ubuntu version: $UBUNTU_VERSION" && exit 1; \
+    fi && \
+    echo "Install ${DX_PYTHON_EXEC} done" && \
+    echo "Set up Virtual Environment..." && \
+    ${DX_PYTHON_EXEC} -m venv /venv-dxnn && \
+    . /venv-dxnn/bin/activate && \
+    echo "Upgrade pip wheel setuptools..." && \
+    UBUNTU_VERSION=$(lsb_release -rs) && \
+    echo "*** UBUNTU_VERSION(${UBUNTU_VERSION}) ***" && \
+    if [ "$UBUNTU_VERSION" = "24.04" ]; then \
+      pip install --upgrade setuptools; \
+    elif [ "$UBUNTU_VERSION" = "22.04" ] || [ "$UBUNTU_VERSION" = "20.04" ] || [ "$UBUNTU_VERSION" = "18.04" ]; then \
+      pip install --upgrade pip wheel setuptools; \
+    else \
+      echo "Unspported Ubuntu version: $UBUNTU_VERSION" && exit 1; \
+    fi
+
+WORKDIR /deepx/dx-runtime/dx_rt
+ADD archives/dx_rt.tar.gz /deepx/dx-runtime/dx_rt/
+
+# temp: until dx_rt's USE_ORT build option default changes from OFF to ON
+RUN set -x && \
+    CMAKE_FILE="cmake/dxrt.cfg.cmake" && \
+    sed -i 's/option(USE_ORT *"Use ONNX Runtime" *OFF)/option(USE_ORT "Use ONNX Runtime" ON)/' "$CMAKE_FILE" && \
+    echo "USE_ORT option has been set to ON in dx_rt/$CMAKE_FILE"
+
+RUN set -x && \
+    . /venv-dxnn/bin/activate && \
+    echo "Build dx_rt..." && \
+    ./install.sh --all && \
+    ./build.sh --install && \
+    cd ./python_package && \
+    pip install .
+
+RUN apt-get update && \
+    apt-get install -y \
+    vim fim && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+WORKDIR /deepx/dx-clip-demo
+ARG FILE_DX_CLIP_DEMO=archives/dx-clip-demo.tar.gz
+ADD ${FILE_DX_CLIP_DEMO} /deepx/dx-clip-demo/
+
+ARG USE_VOLUME=1
+RUN set -x && \
+    echo "USE_VOLUME: $USE_VOLUME" && \
+    if [ $USE_VOLUME -eq 1 ]; then \
+      echo "Skip to setup dx-clip-demo"; \
+    else \
+      echo "Setup dx-clip-demo ..." && \
+      ./setup.sh --app_type=pyqt; \
+    fi
+
+
+WORKDIR /deepx/dx-clip-demo
+
+RUN set -x && \
+    echo "USE_VOLUME: $USE_VOLUME" && \
+    if [ $USE_VOLUME -eq 1 ]; then \
+      echo "source /venv-dxnn/bin/activate" >> /root/.bashrc; \
+    else \
+      echo "source /deepx/dx-clip-demo/venv-pyqt/bin/activate" >> /root/.bashrc; \
+    fi
+
+
+ENV DX_CONTAINER_MODE=true
+
+ENTRYPOINT [ "/usr/local/bin/dxrtd" ]
+# ENTRYPOINT ["tail", "-f", "/dev/null"]
+

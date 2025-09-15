@@ -1,0 +1,703 @@
+{
+    "default_sentence_score_min": 0.2,
+    "default_sentence_score_max": 0.25,
+    "default_sentence_score_threshold": 0.225,
+    "video_path_lists": [
+        [
+            "demo_videos/theft-supermarket"
+        ],
+        [
+            "demo_videos/adult-fight"
+        ],
+        [
+            "demo_videos/crowded-area1"
+        ],
+        [
+            "demo_videos/oldman-fall"
+        ],
+        [
+            "demo_videos/oldwoman-fall"
+        ],
+        [
+            "demo_videos/fire1"
+        ],
+        [
+            "demo_videos/workplace-fall"
+        ],
+        [
+            "demo_videos/chick-hatching"
+        ],
+        [
+            "demo_videos/car-accident"
+        ],
+        [
+            "demo_videos/crowded-area2"
+        ],
+        [
+            "demo_videos/children-fight"
+        ],
+        [
+            "demo_videos/fire2"
+        ],
+        [
+            "demo_videos/theft-home"
+        ],
+        [
+            "demo_videos/taekwondo-competition"
+        ],
+        [
+            "demo_videos/fall-treadmill-gym"
+        ],
+        [
+            "demo_videos/fall-hiking"
+        ]
+    ],
+    "sentence_list": [
+        {
+            "text": "A thumbs up gesture.",
+            "min_score": 0.22,
+            "max_score": 0.3,
+            "threshold": 0.26,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "ALARM",
+                "position": 2,
+                "color": "#E8B849"
+            },
+            "media_alarm_info": {
+                "enabled": true,
+                "title": "ALARM",
+                "media_path": "/home/max/Videos/Thumbs_Up_Low.gif",
+                "position": 7
+            }
+        },
+        {
+            "text": "Showing a hand heart symbol.",
+            "min_score": 0.22,
+            "max_score": 0.3,
+            "threshold": 0.26,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "ALARM",
+                "position": 2,
+                "color": "#E8B849"
+            },
+            "media_alarm_info": {
+                "enabled": true,
+                "title": "ALARM",
+                "media_path": "/home/max/Videos/heart_01.gif",
+                "position": 7
+            }
+        },
+        {
+            "text": "Holding a water bottle and twisting the cap off.",
+            "min_score": 0.24,
+            "max_score": 0.3,
+            "threshold": 0.27,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "ALARM",
+                "position": 2,
+                "color": "#E8B849"
+            },
+            "media_alarm_info": {
+                "enabled": true,
+                "title": "ALARM",
+                "media_path": "/home/max/Videos/Holding_a_Bottle_Low.gif",
+                "position": 7
+            }
+        },
+        {
+            "text": "People inside a railway station with a large departure board.",
+            "min_score": 0.22,
+            "max_score": 0.26,
+            "threshold": 0.24,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A densely packed crowd of people standing together.",
+            "min_score": 0.28,
+            "max_score": 0.3,
+            "threshold": 0.29,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "The hiker stumbles on the path and falls to the ground.",
+            "min_score": 0.26,
+            "max_score": 0.28,
+            "threshold": 0.27,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A lone hiker is walking through a dense, green woodland.",
+            "min_score": 0.27,
+            "max_score": 0.31,
+            "threshold": 0.29,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "The man collapses and falls off the treadmill.",
+            "min_score": 0.29,
+            "max_score": 0.33,
+            "threshold": 0.31,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "Vehicles are passing by on the street.",
+            "min_score": 0.2,
+            "max_score": 0.25,
+            "threshold": 0.225,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A black van crashes into the side of other car.",
+            "min_score": 0.22,
+            "max_score": 0.26,
+            "threshold": 0.24,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "Two black belt martial artists are practicing combat techniques.",
+            "min_score": 0.25,
+            "max_score": 0.29,
+            "threshold": 0.27,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A man and a woman with black belts kneel before a sparring session.",
+            "min_score": 0.25,
+            "max_score": 0.29,
+            "threshold": 0.27,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A baby chick lying exhausted on the white floor.",
+            "min_score": 0.225,
+            "max_score": 0.25,
+            "threshold": 0.235,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A newborn chick is beginning to hatch from its egg.",
+            "min_score": 0.2,
+            "max_score": 0.24,
+            "threshold": 0.21,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A person wearing black jacket is walking through a house.",
+            "min_score": 0.27,
+            "max_score": 0.29,
+            "threshold": 0.28,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A quiet, empty living room as seen from a security camera.",
+            "min_score": 0.25,
+            "max_score": 0.28,
+            "threshold": 0.265,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A worker rushes to provide first aid to his injured colleague.",
+            "min_score": 0.24,
+            "max_score": 0.27,
+            "threshold": 0.25,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A factory worker is carrying a cardboard box.",
+            "min_score": 0.26,
+            "max_score": 0.29,
+            "threshold": 0.275,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A kitchen stove is on fire, with large flames and black smoke.",
+            "min_score": 0.27,
+            "max_score": 0.31,
+            "threshold": 0.29,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A car is fully engulfed in flames in an empty parking lot.",
+            "min_score": 0.25,
+            "max_score": 0.28,
+            "threshold": 0.265,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A fire burning in a kitchen.",
+            "min_score": 0.25,
+            "max_score": 0.28,
+            "threshold": 0.265,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A car on fire.",
+            "min_score": 0.26,
+            "max_score": 0.28,
+            "threshold": 0.27,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "An elderly woman is using a walker in the room.",
+            "min_score": 0.26,
+            "max_score": 0.29,
+            "threshold": 0.275,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A person fell down on the floor.",
+            "min_score": 0.24,
+            "max_score": 0.265,
+            "threshold": 0.25,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "An elderly man is walking beside his bed.",
+            "min_score": 0.29,
+            "max_score": 0.32,
+            "threshold": 0.305,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A person is filming with a smartphone.",
+            "min_score": 0.23,
+            "max_score": 0.27,
+            "threshold": 0.25,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "Two teenage girls are shoving and pushing each other.",
+            "min_score": 0.24,
+            "max_score": 0.28,
+            "threshold": 0.26,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A dense crowd of people waiting on a subway platform.",
+            "min_score": 0.28,
+            "max_score": 0.3,
+            "threshold": 0.29,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "Two people punching and kicking each other.",
+            "min_score": 0.24,
+            "max_score": 0.26,
+            "threshold": 0.25,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "Two men are fighting in an empty room.",
+            "min_score": 0.275,
+            "max_score": 0.31,
+            "threshold": 0.29,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "An aerial view of a large crowd of people on a crosswalk.",
+            "min_score": 0.31,
+            "max_score": 0.34,
+            "threshold": 0.325,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A man takes an item from the shelf and puts it into his grey jacket.",
+            "min_score": 0.26,
+            "max_score": 0.32,
+            "threshold": 0.285,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "A person is shopping in a supermarket.",
+            "min_score": 0.225,
+            "max_score": 0.275,
+            "threshold": 0.25,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "",
+                "position": 2,
+                "color": "#3E9141"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "",
+                "media_path": "",
+                "position": 7
+            }
+        },
+        {
+            "text": "The subway is crowded with people.",
+            "min_score": 0.27,
+            "max_score": 0.29,
+            "threshold": 0.28,
+            "disabled": false,
+            "alarm_info": {
+                "enabled": false,
+                "title": "ALARM",
+                "position": 2,
+                "color": "#E8B849"
+            },
+            "media_alarm_info": {
+                "enabled": false,
+                "title": "ALARM",
+                "media_path": "",
+                "position": 7
+            }
+        }
+    ]
+}

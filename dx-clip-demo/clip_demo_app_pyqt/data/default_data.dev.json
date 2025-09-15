@@ -1,0 +1,228 @@
+{
+  "default_sentence_score_min": 0.2,
+  "default_sentence_score_max": 0.25,
+  "default_sentence_score_threshold": 0.225,
+  "video_path_lists": [
+    [
+      "rtsp://210.99.70.120:1935/live/cctv010.stream"
+    ],
+    [
+      "demo_videos/fire_on_car"
+    ],
+    [
+      "demo_videos/dam_explosion_short"
+    ],
+    [
+      "demo_videos/violence_in_shopping_mall_short"
+    ],
+    [
+      "demo_videos/gun_terrorism_in_airport"
+    ],
+    [
+      "demo_videos/crowded_in_subway"
+    ],
+    [
+      "demo_videos/heavy_structure_falling"
+    ],
+    [
+      "demo_videos/electrical_outlet_is_emitting_smoke"
+    ],
+    [
+      "demo_videos/pot_is_catching_fire"
+    ],
+    [
+      "demo_videos/falldown_on_the_grass"
+    ],
+    [
+      "demo_videos/fighting_on_field"
+    ],
+    [
+      "demo_videos/fire_in_the_kitchen"
+    ],
+    [
+      "demo_videos/group_fight_on_the_streat"
+    ],
+    [
+      "demo_videos/iron_is_on_fire"
+    ],
+    [
+      "demo_videos/someone_helps_old_man_who_is_fallting_down"
+    ],
+    [
+      "demo_videos/the_pile_of_sockets_is_smoky_and_on_fire"
+    ],
+    [
+      "demo_videos/two_childrens_are_fighting"
+    ]
+  ],
+  "sentence_list": [
+    {
+      "text": "the man is rasing his hands",
+      "min_score": 0.2,
+      "max_score": 0.25,
+      "threshold": 0.22
+    },
+    {
+      "text": "Cars are passing on the road.",
+      "min_score": 0.2,
+      "max_score": 0.25,
+      "threshold": 0.225
+    },
+    {
+      "text": "The subway is crowded with people",
+      "min_score": 0.27,
+      "max_score": 0.29,
+      "threshold": 0.28
+    },
+    {
+      "text": "People is crowded in the subway",
+      "min_score": 0.27,
+      "max_score": 0.29,
+      "threshold": 0.28
+    },
+    {
+      "text": "Heavy objects are fallen",
+      "min_score": 0.21,
+      "max_score": 0.25,
+      "threshold": 0.225
+    },
+    {
+      "text": "Physical confrontation occurs between two people",
+      "min_score": 0.23,
+      "max_score": 0.25,
+      "threshold": 0.24
+    },
+    {
+      "text": "Violence with kicking and punching",
+      "min_score": 0.22,
+      "max_score": 0.25,
+      "threshold": 0.23
+    },
+    {
+      "text": "Terrorism is taking place at the airport",
+      "min_score": 0.27,
+      "max_score": 0.29,
+      "threshold": 0.28
+    },
+    {
+      "text": "Terrorist is shooting at people",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.247
+    },
+    {
+      "text": "The water is exploding out",
+      "min_score": 0.24,
+      "max_score": 0.28,
+      "threshold": 0.255
+    },
+    {
+      "text": "The water is gushing out",
+      "min_score": 0.24,
+      "max_score": 0.28,
+      "threshold": 0.255
+    },
+    {
+      "text": "Fire is coming out of the car",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "The car is exploding",
+      "min_score": 0.24,
+      "max_score": 0.28,
+      "threshold": 0.26
+    },
+    {
+      "text": "The electrical outlet on the wall is emitting smoke",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "Smoke is rising from the electrical outlet.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "A pot on the induction cooktop is catching fire.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "A fire broke out in a pot in the kitchen.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "Two childrens are fighting.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "Two children start crying after a fight.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "Several men are engaged in a fight.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "Several people are fighting in the street.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "An elderly man is complaining of pain on the street.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "An man is crouching on the street.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "Someone helps old man who is falling down.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "An elderly grandfather is lying on the floor",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "A fire has occurred in the electric iron.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "The electric iron on the table is on fire.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    },
+    {
+      "text": "Two men are engaging in mixed martial arts on the ring.",
+      "min_score": 0.23,
+      "max_score": 0.26,
+      "threshold": 0.24
+    }
+  ]
+}

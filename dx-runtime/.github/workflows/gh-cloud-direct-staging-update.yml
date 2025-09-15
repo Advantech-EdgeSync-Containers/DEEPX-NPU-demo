@@ -1,0 +1,46 @@
+name: Direct Staging Update and Dispatch
+run-name: Direct staging push to dx-runtime by ${{ github.sha }}
+
+on:
+  workflow_dispatch:
+#  push:
+#    branches:
+#      - staging
+
+permissions: write-all
+
+env:
+  OWNER: DEEPX-AI
+  REPO: dx-all-suite
+
+jobs:
+  process_direct_push:
+    runs-on:
+      - self-hosted
+      - sdk
+    steps:
+      - name: Clean Workspace
+        run: |
+          sudo rm -rf ${{ github.workspace }}
+          mkdir -p ${{ github.workspace }}
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          token: ${{ secrets.GC_DCI_TOKEN }}
+          ref: staging
+
+      - name: Dispatch Staging Update to dx-all-suite
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GC_DCI_TOKEN }}
+          repository: ${{ env.OWNER }}/${{ env.REPO }}
+          event-type: update-submodule
+          client-payload: |
+            {
+              "name": "dx-runtime",
+              "sha": "${{ github.sha }}",
+              "ref": "${{ github.ref_name }}"
+            }
