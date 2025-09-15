@@ -1,0 +1,5 @@
+services:
+  dx-clip-demo:
+    volumes:
+      - ${DX_CLIP_DEMO_SRC_PATH:-../dx-clip-demo}:/deepx/dx-clip-demo
+      - ~/.ssh:/root/.ssh

@@ -1,0 +1,26 @@
+Metadata-Version: 2.4
+Name: dx-engine
+Version: 1.1.0
+Summary: Python wrapper class for dx_rt
+Home-page: https://gh.deepx.ai/deepx/dx_rt.git
+Author: DEEPX-RT
+Author-email: rt@deepx.ai
+Project-URL: Bug Tracker, https://gh.deepx.ai/deepx/dx_rt/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+

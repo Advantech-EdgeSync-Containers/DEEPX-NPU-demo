@@ -1,0 +1,22 @@
+.idea
+.vscode
+assets/
+assets
+venv*/
+venv*
+profiler.json
+.venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*__init__.py
+
+**/docs/**/*.pdf
+**/docs/**/*.zip
+**/docs/docs_web/
+
+clip_demo_app_pyqt/data/data.json
+clip-*/*
+demo-*/*
+download

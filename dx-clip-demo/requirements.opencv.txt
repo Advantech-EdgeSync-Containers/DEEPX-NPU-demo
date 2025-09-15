@@ -1,0 +1,9 @@
+ftfy
+numpy
+onnxruntime
+opencv-python
+regex
+torch --find-links https://download.pytorch.org/whl/cpu
+torchvision --find-links https://download.pytorch.org/whl/cpu
+tqdm
+

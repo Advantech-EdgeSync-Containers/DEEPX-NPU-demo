@@ -1,0 +1,92 @@
+name: Update Submodule
+
+on:
+  repository_dispatch:
+    types:
+      - update-submodule
+      - update-submodule-from-child
+
+permissions: write-all
+
+jobs:
+  update-submodule:
+    runs-on:
+      - self-hosted
+      - sdk
+    timeout-minutes: 5
+    steps:
+      - name: Clean Workspace
+        run: |
+          sudo rm -rf ${{ github.workspace }}
+          mkdir -p ${{ github.workspace }}
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.client_payload.parent_ref || github.event.client_payload.ref }}
+          submodules: recursive
+          fetch-tags: true
+          fetch-depth: 0
+          token: ${{ secrets.GC_DCI_TOKEN }}
+
+      - name: Update Submodule
+        run: |
+          SUBMODULE_NAME="${{ github.event.client_payload.submodule_name || github.event.client_payload.name }}"
+          SUBMODULE_SHA="${{ github.event.client_payload.submodule_sha || github.event.client_payload.sha }}"
+          TARGET_BRANCH="${{ github.event.client_payload.parent_ref || github.event.client_payload.ref }}"
+
+          echo "Updating submodule $SUBMODULE_NAME to $SUBMODULE_SHA on $TARGET_BRANCH branch."
+
+          git checkout $TARGET_BRANCH
+
+          git config -f .gitmodules submodule.$SUBMODULE_NAME.url git@github.com:DEEPX-AI/$SUBMODULE_NAME.git
+          git submodule update --init --recursive $SUBMODULE_NAME
+
+          cd $SUBMODULE_NAME
+          git fetch origin
+          git checkout $SUBMODULE_SHA
+          cd ..
+
+      - name: Generate DATE ENV
+        run: |
+          echo "DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
+
+      - name: Commit Submodule Changes
+        id: auto-commit-action
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: ${{ github.event.client_payload.parent_ref || github.event.client_payload.ref }}
+          commit_message: "ci(${{env.DATE}}): Update ${{ github.event.client_payload.submodule_name || github.event.client_payload.name }}"
+          commit_options: "--no-verify --allow-empty"
+
+      - name: Dispatch Staging Update to dx-all-suite
+        # 이 디스패치는 dx-runtime의 staging 브랜치가 업데이트되었을 때 dx-all-suite의 staging 브랜치에 알리기 위함입니다.
+        if: steps.auto-commit-action.outputs.changes_detected == 'true' && (github.event.client_payload.ref == 'staging' || github.event.client_payload.parent_ref == 'staging')
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GC_DCI_TOKEN }}
+          repository: DEEPX-AI/dx-all-suite
+          event-type: update-submodule
+          client-payload: |
+            {
+              "name": "dx-runtime",
+              "sha": "${{ steps.auto-commit-action.outputs.commit_hash }}",
+              "ref": "staging",
+              "tag_version": "${{ github.event.client_payload.tag_version }}"
+            }
+
+      - name: Dispatch Main Update to dx-all-suite (Only for Main branch propagation)
+        # 이 디스패치는 dx-runtime의 main 브랜치가 업데이트되었을 때 dx-all-suite의 main 브랜치에 알리기 위함입니다.
+        if: steps.auto-commit-action.outputs.changes_detected == 'true' && github.event.client_payload.parent_ref == 'main'
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GC_DCI_TOKEN }}
+          repository: DEEPX-AI/dx-all-suite
+          event-type: update-submodule-from-child
+          client-payload: |
+            {
+              "submodule_name": "dx-runtime",
+              "submodule_sha": "${{ steps.auto-commit-action.outputs.commit_hash }}",
+              "submodule_ref": "main",
+              "parent_ref": "main"
+            }

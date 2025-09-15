@@ -1,0 +1,18 @@
+certifi
+ftfy
+numpy
+onnxruntime
+opencv-python-headless
+overrides
+pandas
+pyqt-toast-notification
+PyQt5
+QDarkStyle
+QtPy
+regex
+torch --find-links https://download.pytorch.org/whl/cpu
+torchvision --find-links https://download.pytorch.org/whl/cpu
+torchaudio --find-links https://download.pytorch.org/whl/cpu
+tqdm
+debugpy
+
